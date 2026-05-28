@@ -1,3 +1,23 @@
+server:
+  port: 8081
+
 spring:
   application:
     name: metadata-service
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/dataforge_metadata
+    username: postgres
+    password: postgres
+
+  flyway:
+    url: jdbc:postgresql://localhost:5432/dataforge_metadata
+    user: postgres
+    password: postgres
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
