@@ -1,3 +1,27 @@
+server:
+port: 8083
+
 spring:
-  application:
-    name: stream-processing-service
+application:
+name: stream-processing-service
+
+r2dbc:
+url: r2dbc:postgresql://localhost:5432/dataforge
+username: postgres
+password: postgres
+
+kafka:
+bootstrap-servers: localhost:9092
+consumer:
+group-id: stream-processing-group
+auto-offset-reset: earliest
+
+management:
+endpoints:
+web:
+exposure:
+include: health,info,prometheus
+
+logging:
+level:
+root: INFO
