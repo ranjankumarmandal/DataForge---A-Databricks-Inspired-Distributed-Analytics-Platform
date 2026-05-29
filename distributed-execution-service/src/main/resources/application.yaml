@@ -1,3 +1,20 @@
+server:
+port: 8086
+
 spring:
-  application:
-    name: distributed-execution-service
+application:
+name: distributed-execution-service
+
+r2dbc:
+url: r2dbc:postgresql://postgres:5432/dataforge
+username: postgres
+password: postgres
+
+kafka:
+bootstrap-servers: kafka:9092
+
+management:
+endpoints:
+web:
+exposure:
+include: health,info,prometheus
