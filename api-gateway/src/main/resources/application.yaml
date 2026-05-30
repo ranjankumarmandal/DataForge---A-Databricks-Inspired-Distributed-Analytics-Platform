@@ -1,3 +1,46 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: api-gateway
+
+  cloud:
+    gateway:
+      routes:
+
+        - id: metadata-service
+          uri: http://host.docker.internal:8081
+          predicates:
+            - Path=/api/metadata/**
+
+        - id: ingestion-service
+          uri: http://host.docker.internal:8082
+          predicates:
+            - Path=/api/ingestion/**
+
+        - id: stream-processing-service
+          uri: http://host.docker.internal:8084
+          predicates:
+            - Path=/api/stream/**
+
+        - id: scheduler-service
+          uri: http://host.docker.internal:8085
+          predicates:
+            - Path=/api/workflows/**
+
+        - id: distributed-execution-service
+          uri: http://host.docker.internal:8086
+          predicates:
+            - Path=/api/execution/**
+
+        - id: notebook-execution-service
+          uri: http://host.docker.internal:8087
+          predicates:
+            - Path=/api/notebooks/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
