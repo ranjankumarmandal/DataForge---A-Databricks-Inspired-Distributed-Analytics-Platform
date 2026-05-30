@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+
+  ai-anomaly-detection-service:
+
+    build:
+      context: .
+
+    container_name: ai-anomaly-detection-service
+
+    ports:
+      - "8093:8093"
