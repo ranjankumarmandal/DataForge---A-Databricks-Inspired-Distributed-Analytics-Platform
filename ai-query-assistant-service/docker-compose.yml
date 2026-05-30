@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+
+  ai-query-assistant-service:
+
+    build:
+      context: .
+
+    container_name: ai-query-assistant-service
+
+    ports:
+      - "8092:8092"
