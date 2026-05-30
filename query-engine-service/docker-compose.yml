@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: query-postgres
+    environment:
+      POSTGRES_DB: dataforge
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5437:5432"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.1
+    container_name: query-kafka
+    ports:
+      - "9096:9092"
+
+  query-engine-service:
+    build:
+      context: .
+    container_name: query-engine-service
+    depends_on:
+      - postgres
+    ports:
+      - "8089:8089"
