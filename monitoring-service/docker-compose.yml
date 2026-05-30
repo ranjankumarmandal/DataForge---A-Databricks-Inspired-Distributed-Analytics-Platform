@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: monitoring-postgres
+    environment:
+      POSTGRES_DB: dataforge
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5438:5432"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.1
+    container_name: monitoring-kafka
+    ports:
+      - "9097:9092"
+
+  monitoring-service:
+    build:
+      context: .
+    container_name: monitoring-service
+    depends_on:
+      - postgres
+    ports:
+      - "8091:8091"
