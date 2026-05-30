@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+
+  worker-node:
+
+    build:
+      context: .
+
+    container_name: worker-node
+
+    ports:
+      - "8095:8095"
